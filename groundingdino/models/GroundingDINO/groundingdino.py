@@ -20,32 +20,22 @@ from typing import List
 import torch
 import torch.nn.functional as F
 from torch import nn
-from torchvision.ops.boxes import nms
-from transformers import AutoTokenizer, BertModel, BertTokenizer, RobertaModel, RobertaTokenizerFast
 
-from groundingdino.util import box_ops, get_tokenlizer
+from groundingdino.util import get_tokenlizer
 from groundingdino.util.misc import (
     NestedTensor,
-    accuracy,
-    get_world_size,
-    interpolate,
     inverse_sigmoid,
-    is_dist_avail_and_initialized,
     nested_tensor_from_tensor_list,
 )
-from groundingdino.util.utils import get_phrases_from_posmap
-from groundingdino.util.visualizer import COCOVisualizer
-from groundingdino.util.vl_utils import create_positive_map_from_span
 
 from ..registry import MODULE_BUILD_FUNCS
 from .backbone import build_backbone
 from .bertwarper import (
     BertModelWarper,
-    generate_masks_with_special_tokens,
     generate_masks_with_special_tokens_and_transfer_map,
 )
 from .transformer import build_transformer
-from .utils import MLP, ContrastiveEmbed, sigmoid_focal_loss
+from .utils import MLP, ContrastiveEmbed
 
 
 class GroundingDINO(nn.Module):

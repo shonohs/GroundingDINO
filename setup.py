@@ -28,14 +28,7 @@ from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CUDA_HOME, CppExtension, CUDAExtension
 
 # groundingdino version info
-version = "0.1.0"
 cwd = os.path.dirname(os.path.abspath(__file__))
-
-
-def write_version_file():
-    version_path = os.path.join(cwd, "groundingdino", "version.py")
-    with open(version_path, "w") as f:
-        f.write(f"__version__ = '{version}'\n")
 
 
 def get_extensions():
@@ -56,7 +49,6 @@ def get_extensions():
     define_macros = []
 
     if CUDA_HOME is not None and (torch.cuda.is_available() or "TORCH_CUDA_ARCH_LIST" in os.environ):
-        print("Compiling with CUDA")
         extension = CUDAExtension
         sources += source_cuda
         define_macros += [("WITH_CUDA", None)]
@@ -92,11 +84,9 @@ if __name__ == "__main__":
     with open("LICENSE", "r", encoding="utf-8") as f:
         license = f.read()
 
-    write_version_file()
-
     setup(
         name="groundingdino",
-        version=version,
+        version='0.1.1',
         author="International Digital Economy Academy, Shilong Liu",
         url="https://github.com/IDEA-Research/GroundingDINO",
         description="open-set object detector",
