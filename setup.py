@@ -31,6 +31,11 @@ from torch.utils.cpp_extension import CUDA_HOME, CppExtension, CUDAExtension
 cwd = os.path.dirname(os.path.abspath(__file__))
 
 
+if 'TORCH_CUDA_ARCH_LIST' not in os.environ:
+    # 6.0 (P100), 7.0 (V100), 8.0 (A100)
+    os.environ['TORCH_CUDA_ARCH_LIST'] = '6.0;7.0;8.0'
+
+
 def get_extensions():
     this_dir = os.path.dirname(os.path.abspath(__file__))
     extensions_dir = os.path.join(this_dir, "groundingdino", "models", "GroundingDINO", "csrc")
@@ -86,7 +91,7 @@ if __name__ == "__main__":
 
     setup(
         name="groundingdino",
-        version='0.1.1',
+        version='0.1.2',
         author="International Digital Economy Academy, Shilong Liu",
         url="https://github.com/IDEA-Research/GroundingDINO",
         description="open-set object detector",
