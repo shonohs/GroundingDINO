@@ -91,12 +91,12 @@ if __name__ == "__main__":
 
     setup(
         name="groundingdino",
-        version='0.1.2',
+        version='0.1.4',
         author="International Digital Economy Academy, Shilong Liu",
         url="https://github.com/IDEA-Research/GroundingDINO",
         description="open-set object detector",
         license=license,
-        install_requires=['torch', 'torchvision', 'transformers', 'addict', 'yapf', 'timm', 'numpy'],
+        install_requires=['torch~=2.2.2', 'torchvision', 'transformers', 'addict', 'yapf', 'timm', 'numpy'],
         packages=find_packages(
             exclude=(
                 "configs",
